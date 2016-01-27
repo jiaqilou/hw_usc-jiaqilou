@@ -28,18 +28,15 @@ bool helper(stringstream &input, int len)
 	//make your changes below this line.
 	if (val) 
 	{
-	   char now;
-	 
-	   input >> now;
-	   if(prev == now)
-	   return true;
-	
-	 
-	   else 
-	   {
-	     return false;
-	   }   
-	}
+		char now;
+		input >> now;
+		if(prev == now)//compare prev with char that symmetric to mid
+		  return true;   
+	  else 
+    {
+	    return false;
+    }   
+  }
 	else 
 	{
 	   return false;

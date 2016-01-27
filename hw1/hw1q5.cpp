@@ -16,17 +16,13 @@ int main(int argc, char* argv[])
    int n;
    file >> n;
    string *words = new string [n];
-   //for (int i=0; i<n; i++)
-   // {
-   //    word[i] = new char
-   // }
    for (int i=0; i<n; i++)
    {
-      file >> words[i];
+      file >> words[i];//read in file
    }
    for (int i=0; i<n; i++)
    {
-      cout << words[n-i-1]<<endl;
+      cout << words[n-i-1]<<endl;//output in reverse sequence
    }
    delete[] words;
    file.close();

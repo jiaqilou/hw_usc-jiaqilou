@@ -1,0 +1,3 @@
+4
+MOVEIN 0 3
+OUTPUT 0 2

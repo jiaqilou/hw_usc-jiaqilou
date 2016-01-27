@@ -1,0 +1,17 @@
+part(a):
+1,4,5
+part(b):
+2,3,4,5
+part(c):
+2
+part(d):
+2
+
+Promblem2:
+part(A):
+1,3
+part(b):
+1.git add hw1q2b.cpp
+2.git log
+part(C):
+this will commit the three files, and make them part of repository history.
