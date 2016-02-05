@@ -1,0 +1,116 @@
+problem 1:
+part(a):
+tracked and unmodified, because it is cloned from web.
+part(b):
+README.md is modified and tracked, since it is changed
+fun_problem.txt is untracked
+
+part(c):
+README.md is staged, because of the add
+fun_problem.txt is staged, because of the add
+
+part(d):
+README.md is modified, because of echo
+fun_problem.txt is modified, because of echo
+
+part(e):
+README.md is staged, because of the add.
+fun_problem.txt is unmodified, because of the checkout
+Content of fun_problem.txt is nothing, because checkout discard all changes
+
+part(f):
+README.md is modified, even though it was staged in part(e), the echo changes it and makes it modified.
+
+problem 3:
+1. part(a):
+2. for (int i = 0; i < n; i ++)
+3.    if (A[i] == 0) {
+4.       for (int j = 1; j < n; j *= 2)
+5.          { /* do something that takes O(1) time */ }
+6.    }
+line 5:   Θ(1)
+line 4:   Θ(log n),because it times from 1 to n by 2 times, it takes log n times.
+line 3: we should take the worst case, and assume A[i]is always 0
+line 2:  Θ(n), add from 0 to n-1.
+overall: Θ(n*(log n))
+    
+part(b):
+1. for (int i = 1; i < n; i ++)
+2. {
+3.    for (int j = i; j < n; j ++)
+4.    {
+5.         if (j % i == 0)
+6.         {
+7.             for (int k = 1; k < n; k *= 2)
+8.                { /* do something that takes O(1) time */ }
+9.         }
+10.    }
+11. }
+line 8: Θ(1)
+line 7: Θ(log n),because it times from 1 to n by 2 times, it takes log n times.
+line 3 and line 5:  Θ((n-i)/i)
+line 1: ΣΘ((n-i)/i)(adding from 1 to n)=n*ΣΘ(1/i)-ΣΘ(1)=Θ(nlogn-n)
+overall: Θ((nlogn-n)*(logn))
+
+part(c):
+1. int *a = new int [10];
+2. int size = 10;
+3. for (int i = 0; i < n; i ++) 
+4. {
+5.    if (i == size)
+6.    {  
+7.        int newsize = size+10;
+8.        int *b = new int [newsize];
+9.        for (int j = 0; j < size; j ++) b[j] = a[j];
+10.       delete [] a;
+11.       a = b;
+12.       size = newsize;
+13.   }
+14.   a[i] = sqrt(i);
+15.}
+line 10,11,12: Θ(1)
+line 9: Θ(i),since size== i;
+combination from line 7 to 12:Θ(1+i)
+line 3,5 and combination from line 7 to 12:
+Θ(10)+Θ(20)+Θ(30)+Θ(40).....+Θ(n)=Θ(((10+n)*n/10)/2)=Θ((10n+n^2)/20)
+overall:Θ(10n+n^2)= Θ(n^2)
+
+part(d):
+1. int *a = new int [10];
+2. int size = 10;
+3. for (int i = 0; i < n; i ++) 
+4. {
+5.    if (i == size)
+6.    {  
+7.        int newsize = 2*size;
+8.        int *b = new int [newsize];
+9.        for (int j = 0; j < size; j ++) b[j] = a[j];
+10.       delete [] a;
+11.       a = b;
+12.       size = newsize;
+13.   }
+14.   a[i] = sqrt(i);
+15.}
+line 10,11,12: Θ(1)
+line 9: Θ(i),since size== i;
+combination from line 7 to 12:Θ(1+i)
+line 3,5 and combination from line 7 to 12:
+Θ(10)+Θ(20)+Θ(40)+Θ(80).....+Θ(n)=10*Θ(1+2+4+8...+n)=10*Σ2^k(k from 0 to logn)=10*Θ(n)
+overall:10*Θ(n)=Θ(n)
+
+problem 4:
+a data type that stores all of the past and present presidents of the U.S., and the order in which they served.
+A list that contains the past and present presidents of the U.S. I choose this is because we may need to insert president into the list, as we have to put president into data in order. Only list can insert a value into a data type.
+
+a data type that stores population estimates for each zip code, and allows for speedy access of the population when given a zip code.
+A map, whose key is zipcode and value is population. I choose this is because only map has the function to quickly access the value of the key.
+
+a data type that stores all of the students that solved a tricky homework problem in CSCI 170.
+A set that contains students that solved a tricky homework problem in CSCI 170. It is because we do not need to know the order of students. We just need to know whether the student solves the problem. So a bool value is sufficient for this, and set contains a function that returns bool value.
+
+a data type that stores a gradebook: given a student ID and assignment number, it lets you easily check the student's numeric grade for that assignment.
+A map whose key is given a student ID and the value cooresponding to ID is assignment number. Another key is assignment number, and the value is student's numeric grade for that assignment. Only a map can connects a key and a value that corresponding to it.
+
+problem 5:
+This program will return the node whose value is 5, and next node is 4. The next node after 4 is 3.  The next node after 3 is 2.  The next node after 2 is 1. If i is put inside functionA, it will goes into if statement, and the value return to out is the result of fucA(2). The fA(2) will also goes into if statement, and the value return to out is the result of FA(3). The same reason for FA(3) and FA(4). But for FA(5), it will not go into if statement. It will directly return 5 itself, since 5->next is NULL. So in fA(4), the out value is 5, and it goes into FB(4,5). In this function, it will make 5->next = 4, and 4->next = 5. After FB(4,5), the next node of 4 will be NULL, so only 5->next = 4 exists. And FA(4) return the Node whose value is 5. In the FA(3), for the same reason as FA(4), it will go into FB(3,4), which makes 4->next = 3.
+And 3->next will be changed into NULL. FA(3) also return 5. FA(2) will makes 3->next become 2, and 2->next be NULL, and return 5 with the same reason. In the FuncA(1), its out value is 5 and then goes into FuncB(1,5), which makes 2->next become 1. In the next line, the 1->next turns into NULL, and then return the NODE of 5. And 5 becomes the first element in this linked list. 5, 4, 3, 2, 1 
